@@ -4,10 +4,10 @@ Este pequeno exemplo tem como propósito explorar a utilização do framework Wi
 
 # Fluxo da aplicação
 
-  - Os dados são montados no server-side e distribuídos no formatoJSON pela classe 'FooJsonProvider' para que a API possa realizar o consumo dos mesmos.
+  - Os dados são montados no server-side e distribuídos no formato JSON pela classe 'FooJsonProvider' para que a API possa realizar o consumo dos mesmos.
   - A atualização e envio dos dados são realizados através de eventos AJAX oferecido pelo framework Wicket.
   - O evento AJAX está configurado para ocorrer por tempo. Atualmente o AJAX ocorre a cada 3 segundos.
-  - Quando o AJAX ocorre, é realizado a atualização dos dados através do método 'updateData()' como mostrado abaixo: 
+  - Quando o AJAX ocorre é realizado a atualização dos dados através do método 'updateData()' como mostrado abaixo: 
 ```java
     @Override
     protected void onPostProcessTarget(AjaxRequestTarget target) {
@@ -45,13 +45,13 @@ function setDataStringJson(dataStringJson) {
 }
 ```
 
-Vale observar que as variaǘeis 'dataStringJson' e 'timeToRefresh' são globais, ou seja, vale para todo o arquivo javascript. O código responsável por realizar a "rotina" de "leitura" desta variável está presente neste mesmo arquivo em todas as funções que "desenham" gráficos. 
+Vale observar que as variáeis 'dataStringJson' e 'timeToRefresh' são globais, ou seja, valem para todo o arquivo javascript. O código responsável por realizar a "rotina" de "leitura" desta variável está presente neste mesmo arquivo em todas as funções que "desenham" gráficos. 
 
 Segue um exemplo de definição de rotina:
 ```javascript
 setInterval(updateDrawAreaChart, timeToRefresh);
 
-// Estamos utilizando aqui a variável global timeToRefresh para definir o tempo em millisegundos em que a função 'updateDrawAreaChart' será chamada.
+// Estamos utilizando aqui a variável global timeToRefresh para definir o tempo em milisegundos em que a função 'updateDrawAreaChart' será chamada.
 ```
 
 Segue exemplo de atualização dos dados de um gráfico. Observe que o controle de adição ou remoção de novos registros já está sendo realizado.
