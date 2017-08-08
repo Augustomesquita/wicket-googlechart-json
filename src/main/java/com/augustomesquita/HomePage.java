@@ -14,7 +14,7 @@ import org.apache.wicket.util.time.Duration;
 
 public class HomePage extends WebPage {
 
-    private String jsonList;
+    private String fooJsonList;
     private WebMarkupContainer ajaxToUpdateJSON;
 
     private Random random;
@@ -22,10 +22,6 @@ public class HomePage extends WebPage {
     public HomePage() {
         initVariables();
         initComponents();
-        loadData();
-    }
-
-    private void loadData() {
     }
 
     private void initComponents() {
@@ -36,15 +32,15 @@ public class HomePage extends WebPage {
                 super.updateAjaxAttributes(attributes);
                 attributes.getAjaxCallListeners().add(new AjaxCallListener() {
                     @Override
-                    public CharSequence getDoneHandler(Component component) {
-                        return "setDataStringJson('" + jsonList + "');";
+                    public CharSequence getSuccessHandler(Component component) {
+                        return "setDataStringJson('" + fooJsonList + "');";
                     }
                 });
             }
 
             @Override
             protected void onPostProcessTarget(AjaxRequestTarget target) {
-                updateList();
+                updateData();
             }
         });
         add(ajaxToUpdateJSON);
@@ -52,15 +48,15 @@ public class HomePage extends WebPage {
 
     private void initVariables() {
         this.random = new Random();
-        jsonList = FooJsonProvider.getJSONList(random.nextInt(3 + 1 - 0) + 0);
+        fooJsonList = FooJsonProvider.getJSONList(random.nextInt(3 + 1 - 0) + 0);
     }
 
     @Override
     public void renderHead(IHeaderResponse response) {
-        response.render(OnDomReadyHeaderItem.forScript("setDataStringJson('" + jsonList + "')"));
+        response.render(OnDomReadyHeaderItem.forScript("setDataStringJson('" + fooJsonList + "')"));
     }
 
-    private void updateList() {
-        jsonList = FooJsonProvider.getJSONList(random.nextInt(3 + 1 - 0) + 0);
+    private void updateData() {
+        fooJsonList = FooJsonProvider.getJSONList(random.nextInt(3 + 1 - 0) + 0);
     }
 }
